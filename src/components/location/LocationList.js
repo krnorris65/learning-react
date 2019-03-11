@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 export default class LocationList extends Component {
     render() {
         return (
-            <article>
+            <article className="locations">
                 {
                     this.props.locations.map(location =>
                         <section key={location.id}>
