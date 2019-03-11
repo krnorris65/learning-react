@@ -4,14 +4,15 @@ export default class LocationList extends Component {
     render() {
         return (
             <article>
-            <section>
-                <h4>Nashville North Location</h4>
-                <h5>500 Puppy Way</h5>
-            </section>
-            <section>
-                <h4>Nashville South Location</h4>
-                <h5>860 Terrier Park</h5>
-            </section>
+                {
+                    this.props.locations.map(location =>
+                        <section key={location.id}>
+                            <h4>{location.name}</h4>
+                            <h5>{location.address}</h5>
+                        </section>)
+                }
+
+
             </article>
         );
     }
