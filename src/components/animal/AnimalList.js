@@ -16,13 +16,13 @@ class AnimalList extends Component {
                         //array of owners for current animal
                         let ownerArray = relationship.map(ownerRel => {
                             //getting name of the owner for the current animalOwner relationship. 
-                            let curOwner = ownerList.filter(owner => {
+                            let curOwner = ownerList.find(owner => {
                                 if(owner.id === ownerRel.ownerId){
                                     return owner
                                 }
                             })
                             // curOwner is an array of one object
-                            return curOwner[0]
+                            return curOwner
                         })
 
                         return <div key={animal.id}>
