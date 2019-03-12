@@ -21,13 +21,13 @@ class AnimalList extends Component {
                                     return owner
                                 }
                             })
-                            // curOwner is an array of one object
+                            // an object
                             return curOwner
                         })
 
                         return <div key={animal.id}>
                             <h1>{animal.name} ({animal.type})</h1>
-                            {ownerArray.map(o => <p>{o.name}</p>)}
+                            {ownerArray.map(o => <p key={o.id}>{o.name}</p>)}
                         </div>
                     }
                     )
