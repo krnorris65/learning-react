@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-// import OwnerList from "../owner/OwnerList"
 
 class AnimalList extends Component {
     render() {
