@@ -42,10 +42,12 @@ class Kennel extends Component {
     ]
     
     animalOwners = [
-        {id: 1, animalId: 1, ownerId: [6]},
-        {id: 2, animalId: 2, ownerId: [4]},
-        {id: 3, animalId: 3, ownerId: [3, 5]},
-        {id: 4, animalId: 4, ownerId: [1, 2]},
+        {id: 1, animalId: 1, ownerId: 6},
+        {id: 2, animalId: 2, ownerId: 4},
+        {id: 3, animalId: 3, ownerId: 3},
+        {id: 4, animalId: 3, ownerId: 5},
+        {id: 5, animalId: 4, ownerId: 1},
+        {id: 6, animalId: 4, ownerId: 2}
     ]
     
     state = {
@@ -60,7 +62,7 @@ class Kennel extends Component {
             <article className="kennel">
                 <LocationList locations={this.state.locations} />
                 <EmployeeList employees={this.state.employees} />
-                <AnimalList animals={this.state.animals} owners={this.state.owners}/>
+                <AnimalList animals={this.state.animals} owners={this.state.owners} animalOwners={this.animalOwners}/>
             </article>
         )
     }
