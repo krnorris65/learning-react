@@ -26,7 +26,7 @@ class AnimalList extends Component {
                         })
 
                         return <div key={animal.id}>
-                            <h1>{animal.name} ({animal.type})</h1>
+                            <h1>{animal.name}</h1>
                             {ownerArray.map(o => <p key={o.id}>{o.name}</p>)}
                         </div>
                     }
