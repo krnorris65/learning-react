@@ -41,7 +41,7 @@ class Kennel extends Component {
         { id: 6, name: "Angela Lee" }
     ]
     
-    animalOwners = [
+    animalOwnersFromAPI = [
         {id: 1, animalId: 1, ownerId: 6},
         {id: 2, animalId: 2, ownerId: 4},
         {id: 3, animalId: 3, ownerId: 3},
@@ -54,7 +54,8 @@ class Kennel extends Component {
         owners: this.ownersFromAPI,
         employees: this.employeesFromAPI,
         locations: this.locationsFromAPI,
-        animals: this.animalsFromAPI
+        animals: this.animalsFromAPI,
+        animalOwners: this.animalOwnersFromAPI
     }
 
     render() {
@@ -62,7 +63,7 @@ class Kennel extends Component {
             <article className="kennel">
                 <LocationList locations={this.state.locations} />
                 <EmployeeList employees={this.state.employees} />
-                <AnimalList animals={this.state.animals} owners={this.state.owners} animalOwners={this.animalOwners}/>
+                <AnimalList animals={this.state.animals} owners={this.state.owners} animalOwners={this.state.animalOwners}/>
             </article>
         )
     }
