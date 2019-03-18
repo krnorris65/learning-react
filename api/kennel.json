@@ -13,8 +13,9 @@
       "name": "Zoe LeBlanc"
     },
     {
-        "id": 4, 
-        "name": "Blaise Roberts" }
+      "id": 4,
+      "name": "Blaise Roberts"
+    }
   ],
   "locations": [
     {
@@ -42,8 +43,8 @@
       "name": "Angus"
     },
     {
-        "id": 4, 
-        "name": "Henley" 
+      "id": 4,
+      "name": "Henley"
     },
     {
       "id": 5,
@@ -56,9 +57,9 @@
   ],
   "owners": [
     {
-      "id": 1,
-      "name": "Ryan Tanay",
-      "phone": "293-304-3029"
+        "id": 1, 
+        "name": "Ryan Tanay",
+        "phone": "239-293-2039"
     },
     {
       "id": 2,
@@ -80,13 +81,14 @@
       "name": "Fletcher Bangs",
       "phone": "283-234-5434"
     }
+    },
+    {
+      "id": 6,
+      "name": "Angela Lee",
+      "phone": "283-234-2124"
+    }
   ],
   "animalOwners": [
-      {
-        "id": 1,
-        "animalId": 1,
-        "ownerId": 1
-      },
     {
       "id": 2,
       "animalId": 2,
@@ -111,11 +113,6 @@
       "id": 6,
       "animalId": 5,
       "ownerId": 3
-    },
-    {
-      "id": 7,
-      "animalId": 6,
-      "ownerId": 1
     }
   ]
 }
