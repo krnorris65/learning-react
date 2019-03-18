@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import dog from "./DogIcon.png"
+import "./Animal.css"
 
 class AnimalList extends Component {
     render() {
@@ -17,7 +19,7 @@ class AnimalList extends Component {
                         let ownerArray = relationship.map(ownerRel => {
                             //getting name of the owner for the current animalOwner relationship. 
                             let curOwner = ownerList.find(owner => {
-                                if(owner.id === ownerRel.ownerId){
+                                if (owner.id === ownerRel.ownerId) {
                                     return owner
                                 }
                             })
@@ -25,9 +27,17 @@ class AnimalList extends Component {
                             return curOwner
                         })
 
-                        return <div key={animal.id}>
-                            <h1>{animal.name}</h1>
-                            {ownerArray.map(o => <p key={o.id}>{o.name}</p>)}
+                        return <div key={animal.id} className="card">
+                            <div className="card-body">
+                                <h5 className="card-title">
+                                    <img src={dog} className="icon--dog" />
+                                    {animal.name}
+                                    <a href="#"
+                                        onClick={() => this.props.deleteAnimal(animal.id)}
+                                        className="card-link">Delete</a>
+                                </h5>
+                                        {ownerArray.map(o => <p key={o.id}>{o.name}</p>)}
+                            </div>
                         </div>
                     }
                     )
