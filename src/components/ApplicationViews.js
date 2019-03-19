@@ -74,6 +74,19 @@ export default class ApplicationViews extends Component {
                 owners: owners
             })
             )
+            .then(() => fetch(`http://localhost:5002/animalOwners`))
+            .then(e => e.json())
+            .then(animalOwners => {
+                //gets the current animalOwner relationships
+                let ownerAnimals = this.state.animalOwners.filter(oA => oA.ownerId === id)
+                //deletes the animal whose owner was just removed
+                ownerAnimals.map(a => this.deleteAnimal(a.animalId))
+                this.setState({
+                    animalOwners: animalOwners
+
+                })
+            }
+            )
     }
 
     render() {

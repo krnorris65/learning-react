@@ -80,7 +80,6 @@
         "id": 5,
         "name": "Fletcher Bangs",
         "phone": "283-234-5434"
-      }
       },
       {
         "id": 6,
@@ -89,6 +88,11 @@
       }
     ],
     "animalOwners": [
+      {
+        "id": 1,
+        "animalId": 1,
+        "ownerId": 1
+      },
       {
         "id": 2,
         "animalId": 2,
@@ -113,6 +117,11 @@
         "id": 6,
         "animalId": 5,
         "ownerId": 3
+      },
+      {
+        "id": 7,
+        "animalId": 6,
+        "ownerId": 2
       }
     ]
   }
