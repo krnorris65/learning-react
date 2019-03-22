@@ -8,6 +8,7 @@ import AnimalManager from "../modules/AnimalManager"
 import OwnerManager from "../modules/OwnerManager"
 import LocationManager from "../modules/LocationManager"
 import EmployeeManager from "../modules/EmployeeManager"
+import APIManager from "../modules/APIManager"
 
 
 export default class ApplicationViews extends Component {
@@ -24,70 +25,59 @@ export default class ApplicationViews extends Component {
     componentDidMount() {
         const newState = {}
 
-        OwnerManager.getAll()
+        APIManager.all("owners")
             .then(owners => newState.owners = owners)
-            .then(EmployeeManager.getAll)
-            .then(employees => newState.employees = employees)
-            .then(LocationManager.getAll)
-            .then(locations => newState.locations = locations)
-            .then(AnimalManager.getAll)
-            .then(allAnimals => newState.animals = allAnimals)
-            .then(() => fetch("http://localhost:5002/animalOwners")
-                .then(r => r.json()))
-            .then(animalOwners => newState.animalOwners = animalOwners)
+            .then(() => APIManager.all("employees")
+                .then(employees => newState.employees = employees))
+            .then(() => APIManager.all("locations")
+                .then(locations => newState.locations = locations))
+            .then(() => APIManager.all("animals")
+                .then(allAnimals => newState.animals = allAnimals))
+            .then(() => APIManager.all("animalOwners")
+                .then(animalOwners => newState.animalOwners = animalOwners))
             .then(() => this.setState(newState))
     }
 
     deleteAnimal = id => {
-        return fetch(`http://localhost:5002/animals/${id}`, {
-            method: "DELETE"
-        })
-            .then(e => e.json())
-            .then(() => fetch(`http://localhost:5002/animals`))
-            .then(e => e.json())
-            .then(animals => this.setState({
-                animals: animals
-            })
+        return APIManager.delete("animals", id)
+            .then(() => APIManager.all("animals")
+                .then(animals => this.setState({
+                    animals: animals
+                })
+                )
             )
     }
 
     fireEmployee = id => {
-        return fetch(`http://localhost:5002/employees/${id}`, {
-            method: "DELETE"
-        })
-            .then(e => e.json())
-            .then(() => fetch(`http://localhost:5002/employees`))
-            .then(e => e.json())
-            .then(employees => this.setState({
-                employees: employees
-            })
+        return APIManager.delete("employees", id)
+            .then(() => APIManager.all("employees")
+                .then(employees => this.setState({
+                    employees: employees
+                })
+                )
             )
     }
 
     removeOwner = id => {
-        return fetch(`http://localhost:5002/owners/${id}`, {
-            method: "DELETE"
-        })
-            .then(e => e.json())
-            .then(() => fetch(`http://localhost:5002/owners`))
-            .then(e => e.json())
-            .then(owners => this.setState({
-                owners: owners
-            })
-            )
-            .then(() => fetch(`http://localhost:5002/animalOwners`))
-            .then(e => e.json())
-            .then(animalOwners => {
-                //gets the current animalOwner relationships
-                let ownerAnimals = this.state.animalOwners.filter(oA => oA.ownerId === id)
-                //deletes the animal whose owner was just removed
-                ownerAnimals.map(a => this.deleteAnimal(a.animalId))
-                this.setState({
-                    animalOwners: animalOwners
-
+        return APIManager.delete("owners", id)
+            .then(() => APIManager.all("owners")
+                .then(owners => this.setState({
+                    owners: owners
                 })
-            }
+                )
             )
+            .then(() => APIManager.all("animalOwners")
+                .then(animalOwners => {
+                    //gets the current animalOwner relationships
+                    let ownerAnimals = this.state.animalOwners.filter(oA => oA.ownerId === id)
+                    //deletes the animal whose owner was just removed
+                    ownerAnimals.map(a => this.deleteAnimal(a.animalId))
+                    this.setState({
+                        animalOwners: animalOwners
+
+                    })
+                }
+                ))
     }
 
     render() {
