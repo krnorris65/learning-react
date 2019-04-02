@@ -32,27 +32,33 @@
     "animals": [
       {
         "id": 1,
-        "name": "Doodles"
+        "name": "Doodles",
+        "breed": "Poodle"
       },
       {
         "id": 2,
-        "name": "Jack"
+        "name": "Jack",
+        "breed": "German Shephard"
       },
       {
         "id": 3,
-        "name": "Angus"
+        "name": "Angus",
+        "breed": "Terrier"
       },
       {
         "id": 4,
-        "name": "Henley"
+        "name": "Henley",
+        "breed": "Beagle"
       },
       {
         "id": 5,
-        "name": "Derkins"
+        "name": "Derkins",
+        "breed": "Lab"
       },
       {
         "id": 6,
-        "name": "Checkers"
+        "name": "Checkers",
+        "breed": "Boxer"
       }
     ],
     "owners": [
