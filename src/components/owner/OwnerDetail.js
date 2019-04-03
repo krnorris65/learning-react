@@ -6,8 +6,8 @@ export default class OwnerDetail extends Component {
 
         return (
             <section className="owner">
-                <div key={owner.id}>
-                    <h4>{owner.name}</h4>
+                <div key={owner.id} className="card">
+                    <h4 className="card-title">{owner.name}</h4>
                     <p>{owner.phone}</p>
                     <a href="#"
                         onClick={() => this.props.removeOwner(owner.id)}>Remove</a>

@@ -6,8 +6,8 @@ export default class EmployeeDetail extends Component {
 
         return (
             <section className="employee">
-                <div key={employee.id}>
-                    {employee.name}
+                <div key={employee.id} className="card">
+                <h5 className="card-title">{employee.name}</h5>
                     <a href="#"
                         onClick={() => this.props.fireEmployee(employee.id)}>Fire</a>
                 </div>
