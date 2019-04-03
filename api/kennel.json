@@ -1,133 +1,139 @@
 {
-    "employees": [
-      {
-        "id": 1,
-        "name": "Jessica Younker"
-      },
-      {
-        "id": 2,
-        "name": "Jordan Nelson"
-      },
-      {
-        "id": 3,
-        "name": "Zoe LeBlanc"
-      },
-      {
-        "id": 4,
-        "name": "Blaise Roberts"
-      }
-    ],
-    "locations": [
-      {
-        "id": 1,
-        "name": "Nashville North",
-        "address": "500 Circle Way"
-      },
-      {
-        "id": 2,
-        "name": "Nashville South",
-        "address": "10101 Binary Court"
-      }
-    ],
-    "animals": [
-      {
-        "id": 1,
-        "name": "Doodles",
-        "breed": "Poodle"
-      },
-      {
-        "id": 2,
-        "name": "Jack",
-        "breed": "German Shephard"
-      },
-      {
-        "id": 3,
-        "name": "Angus",
-        "breed": "Terrier"
-      },
-      {
-        "id": 4,
-        "name": "Henley",
-        "breed": "Beagle"
-      },
-      {
-        "id": 5,
-        "name": "Derkins",
-        "breed": "Lab"
-      },
-      {
-        "id": 6,
-        "name": "Checkers",
-        "breed": "Boxer"
-      }
-    ],
-    "owners": [
-      {
-          "id": 1, 
-          "name": "Ryan Tanay",
-          "phone": "239-293-2039"
-      },
-      {
-        "id": 2,
-        "name": "Emma Beaton",
-        "phone": "283-294-2943"
-      },
-      {
-        "id": 3,
-        "name": "Dani Adkins",
-        "phone": "748-398-9483"
-      },
-      {
-        "id": 4,
-        "name": "Adam Oswalt",
-        "phone": "829-234-3492"
-      },
-      {
-        "id": 5,
-        "name": "Fletcher Bangs",
-        "phone": "283-234-5434"
-      },
-      {
-        "id": 6,
-        "name": "Angela Lee",
-        "phone": "283-234-2124"
-      }
-    ],
-    "animalOwners": [
-      {
-        "id": 1,
-        "animalId": 1,
-        "ownerId": 1
-      },
-      {
-        "id": 2,
-        "animalId": 2,
-        "ownerId": 4
-      },
-      {
-        "id": 3,
-        "animalId": 3,
-        "ownerId": 3
-      },
-      {
-        "id": 4,
-        "animalId": 3,
-        "ownerId": 5
-      },
-      {
-        "id": 5,
-        "animalId": 4,
-        "ownerId": 2
-      },
-      {
-        "id": 6,
-        "animalId": 5,
-        "ownerId": 3
-      },
-      {
-        "id": 7,
-        "animalId": 6,
-        "ownerId": 2
-      }
-    ]
-  }
+  "employees": [
+    {
+      "id": 1,
+      "name": "Jessica Younker"
+    },
+    {
+      "id": 2,
+      "name": "Jordan Nelson"
+    },
+    {
+      "id": 3,
+      "name": "Zoe LeBlanc"
+    },
+    {
+      "id": 4,
+      "name": "Blaise Roberts"
+    }
+  ],
+  "locations": [
+    {
+      "id": 1,
+      "name": "Nashville North",
+      "address": "500 Circle Way"
+    },
+    {
+      "id": 2,
+      "name": "Nashville South",
+      "address": "10101 Binary Court"
+    }
+  ],
+  "animals": [
+    {
+      "id": 1,
+      "name": "Doodles",
+      "breed": "Poodle"
+    },
+    {
+      "id": 2,
+      "name": "Jack",
+      "breed": "German Shephard"
+    },
+    {
+      "id": 3,
+      "name": "Angus",
+      "breed": "Terrier"
+    },
+    {
+      "id": 4,
+      "name": "Henley",
+      "breed": "Beagle"
+    },
+    {
+      "id": 5,
+      "name": "Derkins",
+      "breed": "Lab"
+    },
+    {
+      "id": 6,
+      "name": "Checkers",
+      "breed": "Boxer"
+    },
+    {
+      "name": "Buttons",
+      "breed": "Min Pin",
+      "employeeId": 2,
+      "id": 7
+    }
+  ],
+  "owners": [
+    {
+      "id": 1,
+      "name": "Ryan Tanay",
+      "phone": "239-293-2039"
+    },
+    {
+      "id": 2,
+      "name": "Emma Beaton",
+      "phone": "283-294-2943"
+    },
+    {
+      "id": 3,
+      "name": "Dani Adkins",
+      "phone": "748-398-9483"
+    },
+    {
+      "id": 4,
+      "name": "Adam Oswalt",
+      "phone": "829-234-3492"
+    },
+    {
+      "id": 5,
+      "name": "Fletcher Bangs",
+      "phone": "283-234-5434"
+    },
+    {
+      "id": 6,
+      "name": "Angela Lee",
+      "phone": "283-234-2124"
+    }
+  ],
+  "animalOwners": [
+    {
+      "id": 1,
+      "animalId": 1,
+      "ownerId": 1
+    },
+    {
+      "id": 2,
+      "animalId": 2,
+      "ownerId": 4
+    },
+    {
+      "id": 3,
+      "animalId": 3,
+      "ownerId": 3
+    },
+    {
+      "id": 4,
+      "animalId": 3,
+      "ownerId": 5
+    },
+    {
+      "id": 5,
+      "animalId": 4,
+      "ownerId": 2
+    },
+    {
+      "id": 6,
+      "animalId": 5,
+      "ownerId": 3
+    },
+    {
+      "id": 7,
+      "animalId": 6,
+      "ownerId": 2
+    }
+  ]
+}

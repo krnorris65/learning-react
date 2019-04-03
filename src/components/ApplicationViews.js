@@ -4,15 +4,12 @@ import AnimalList from './animal/AnimalList'
 import LocationList from './location/LocationList'
 import EmployeeList from './employee/EmployeeList'
 import OwnerList from './owner/OwnerList'
-import AnimalManager from "../modules/AnimalManager"
-import OwnerManager from "../modules/OwnerManager"
-import LocationManager from "../modules/LocationManager"
-import EmployeeManager from "../modules/EmployeeManager"
 import APIManager from "../modules/APIManager"
 import AnimalDetail from "./animal/AnimalDetail"
 import EmployeeDetail from "./employee/EmployeeDetail"
 import LocationDetail from "./location/LocationDetail"
 import OwnerDetail from "./owner/OwnerDetail"
+import AnimalForm from "./animal/AnimalForm"
 
 
 export default class ApplicationViews extends Component {
@@ -50,6 +47,16 @@ export default class ApplicationViews extends Component {
                 })
                 )
             )
+    }
+
+    addAnimal = newAnimal => {
+        return APIManager.post("animals", newAnimal)
+            .then(() => APIManager.all("animals"))
+            .then(animals =>
+                this.setState({
+                    animals: animals
+                })
+            );
     }
 
     fireEmployee = id => {
@@ -91,13 +98,18 @@ export default class ApplicationViews extends Component {
                     return <LocationList locations={this.state.locations} />
                 }} />
                 <Route exact path="/locations/:locationId(\d+)" render={(props) => {
-                    return <LocationDetail {...props} locations={this.state.locations}/>
+                    return <LocationDetail {...props} locations={this.state.locations} />
                 }} />
                 <Route exact path="/animals" render={(props) => {
-                    return <AnimalList deleteAnimal={this.deleteAnimal} animals={this.state.animals} owners={this.state.owners} animalOwners={this.state.animalOwners} />
+                    return <AnimalList {...props} deleteAnimal={this.deleteAnimal} animals={this.state.animals} owners={this.state.owners} animalOwners={this.state.animalOwners} />
                 }} />
                 <Route path="/animals/:animalId(\d+)" render={(props) => {
                     return <AnimalDetail {...props} deleteAnimal={this.deleteAnimal} animals={this.state.animals} />
+                }} />
+                <Route path="/animals/new" render={(props) => {
+                    return <AnimalForm {...props}
+                        addAnimal={this.addAnimal}
+                        employees={this.state.employees} owners={this.state.owners} animalOwners={this.state.animalOwners} />
                 }} />
                 <Route exact path="/employees" render={(props) => {
                     return <EmployeeList fireEmployee={this.fireEmployee} employees={this.state.employees} />

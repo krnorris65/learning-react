@@ -18,5 +18,16 @@ export default Object.create(null, {
                 method: "DELETE"
             }).then(e => e.json())
         }
+    },
+    post: {
+        value: function (resource, newObj) {
+        return fetch(`${remoteURL}/${resource}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(newObj)
+        }).then(data => data.json())
+      }
     }
 })
