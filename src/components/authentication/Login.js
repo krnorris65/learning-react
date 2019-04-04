@@ -4,26 +4,41 @@ export default class Login extends Component {
     //initial state
     state = {
         email: "",
-        password: ""
+        password: "",
+        remember: ""
     }
 
     handleFieldChange = (evt) => {
         const stateToChange = {}
-        stateToChange[evt.target.id] = evt.target.value
+        if(evt.target.id === "remember"){
+            stateToChange[evt.target.id] = evt.target.checked
+        } else {
+            stateToChange[evt.target.id] = evt.target.value
+        }
         this.setState(stateToChange)
     }
 
     handleLogin = (e) => {
         e.preventDefault()
-
-        //store in session storage
-        sessionStorage.setItem(
-            "credentials",
-            JSON.stringify({
-                email: this.state.email,
-                password: this.state.password
-            })
-        )
+        if (this.state.remember) {
+            //if remember marked, store in local storage
+            localStorage.setItem(
+                "credentials",
+                JSON.stringify({
+                    email: this.state.email,
+                    password: this.state.password
+                })
+            )
+        } else {
+            //if remember not marked, store in session storage
+            sessionStorage.setItem(
+                "credentials",
+                JSON.stringify({
+                    email: this.state.email,
+                    password: this.state.password
+                })
+            )
+        }
     }
 
     render() {
@@ -44,6 +59,13 @@ export default class Login extends Component {
                     id="password"
                     placeholder="Password"
                     required="" />
+                <label htmlFor="inputRemember">
+                    Remember Me
+                </label>
+                <input onChange={this.handleFieldChange}
+                    type="checkbox"
+                    id="remember" />
+                <br />
                 <button type="submit">
                     Sign in
                 </button>

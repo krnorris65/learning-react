@@ -16,7 +16,7 @@ import Login from "./authentication/Login"
 export default class ApplicationViews extends Component {
 
     //check if authenticated
-    isAuthenticated = () => sessionStorage.getItem("credentials") !== null
+    isAuthenticated = () => sessionStorage.getItem("credentials") !== null || localStorage.getItem("credentials") !== null
 
     state = {
         owners: [],
