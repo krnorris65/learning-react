@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import dog from "./DogIcon.png"
 import "./Animal.css"
 import { Link } from "react-router-dom"
+import AnimalCard from "./AnimalCard"
 
 class AnimalList extends Component {
     render() {
@@ -39,19 +40,8 @@ class AnimalList extends Component {
                                 return curOwner
                             })
 
-                            return <div key={animal.id} className="card">
-                                <div className="card-body">
-                                    <h5 className="card-title">
-                                        <img src={dog} className="icon--dog" />
-                                        {animal.name}
-                                    </h5>
-                                        <Link className="nav-link" to={`/animals/${animal.id}`}>Details</Link>
-                                        <a href="#"
-                                            onClick={() => this.props.deleteAnimal(animal.id)}
-                                            className="card-link">Delete</a>
-                                    {ownerArray.map(o => <p key={o.id}>{o.name}</p>)}
-                                </div>
-                            </div>
+                            return <AnimalCard key={animal.id} animal={animal} ownerArray={ownerArray} {...this.props} />
+
                         }
                         )
                     }
