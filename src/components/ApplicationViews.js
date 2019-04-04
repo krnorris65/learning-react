@@ -1,4 +1,4 @@
-import { Route } from 'react-router-dom'
+import { Route, Redirect } from 'react-router-dom'
 import React, { Component } from "react"
 import AnimalList from './animal/AnimalList'
 import LocationList from './location/LocationList'
@@ -9,11 +9,14 @@ import AnimalDetail from "./animal/AnimalDetail"
 import EmployeeDetail from "./employee/EmployeeDetail"
 import OwnerDetail from "./owner/OwnerDetail"
 import AnimalForm from "./animal/AnimalForm"
-import EmployeeForm from "./employee/EmployeeForm.js"
-import OwnerForm from "./owner/OwnerForm.js"
+import EmployeeForm from "./employee/EmployeeForm"
+import OwnerForm from "./owner/OwnerForm"
+import Login from "./authentication/Login"
 
 export default class ApplicationViews extends Component {
 
+    //check if authenticated
+    isAuthenticated = () => sessionStorage.getItem("credentials") !== null
 
     state = {
         owners: [],
@@ -113,6 +116,7 @@ export default class ApplicationViews extends Component {
     render() {
         return (
             <React.Fragment>
+                <Route path="/login" component={Login}/>
                 <Route exact path="/" render={(props) => {
                     return <LocationList locations={this.state.locations} />
                 }} />
@@ -128,7 +132,12 @@ export default class ApplicationViews extends Component {
                         employees={this.state.employees} />
                 }} />
                 <Route exact path="/employees" render={(props) => {
-                    return <EmployeeList {...props} fireEmployee={this.fireEmployee} employees={this.state.employees} />
+                    if(this.isAuthenticated()){
+
+                        return <EmployeeList {...props} fireEmployee={this.fireEmployee} employees={this.state.employees} />
+                    } else {
+                        return <Redirect to="/login" />
+                    }
                 }} />
                 <Route path="/employees/:employeeId(\d+)" render={(props) => {
                     return <EmployeeDetail {...props} fireEmployee={this.fireEmployee} employees={this.state.employees} />
