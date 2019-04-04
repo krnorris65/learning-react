@@ -12,7 +12,7 @@ import AnimalForm from "./animal/AnimalForm"
 import EmployeeForm from "./employee/EmployeeForm"
 import OwnerForm from "./owner/OwnerForm"
 import Login from "./authentication/Login"
-
+import AnimalEditForm from "./animal/AnimalEditForm"
 export default class ApplicationViews extends Component {
 
     //check if authenticated
@@ -50,6 +50,16 @@ export default class ApplicationViews extends Component {
                 })
                 )
             )
+    }
+
+    updateAnimal = editedAnimal => {
+        return APIManager.put("animals", editedAnimal)
+        .then(() => APIManager.all("animals"))
+        .then(animals => {
+            this.setState({
+                animals: animals
+            })
+        })
     }
 
     addAnimal = newAnimal => {
@@ -134,6 +144,10 @@ export default class ApplicationViews extends Component {
                 <Route path="/animals/:animalId(\d+)" render={(props) => {
                     return <AnimalDetail {...props} deleteAnimal={this.deleteAnimal} animals={this.state.animals} />
                 }} />
+                <Route path="/animals/:animalId(\d+)/edit"
+                render={props => {
+                    return <AnimalEditForm {...props} employees={this.state.employees} updateAnimal={this.updateAnimal}/>
+                }}/>
                 <Route path="/animals/new" render={(props) => {
                     return <AnimalForm {...props}
                         addAnimal={this.addAnimal}
