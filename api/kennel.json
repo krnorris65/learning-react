@@ -2,19 +2,23 @@
   "employees": [
     {
       "id": 1,
-      "name": "Jessica Younker"
+      "name": "Jessica Younker",
+      "locationId": 1
     },
     {
       "id": 2,
-      "name": "Jordan Nelson"
+      "name": "Jordan Nelson",
+      "locationId": 2
     },
     {
       "id": 3,
-      "name": "Zoe LeBlanc"
+      "name": "Zoe LeBlanc",
+      "locationId": 1
     },
     {
       "id": 4,
-      "name": "Blaise Roberts"
+      "name": "Blaise Roberts",
+      "locationId": 2
     }
   ],
   "locations": [
@@ -33,32 +37,38 @@
     {
       "id": 1,
       "name": "Doodles",
-      "breed": "Poodle"
+      "breed": "Poodle",
+      "employeeId": 1
     },
     {
       "id": 2,
       "name": "Jack",
-      "breed": "German Shephard"
+      "breed": "German Shephard",
+      "employeeId": 4
     },
     {
       "id": 3,
       "name": "Angus",
-      "breed": "Terrier"
+      "breed": "Terrier",
+      "employeeId": 3
     },
     {
       "id": 4,
       "name": "Henley",
-      "breed": "Beagle"
+      "breed": "Beagle",
+      "employeeId": 2
     },
     {
       "id": 5,
       "name": "Derkins",
-      "breed": "Lab"
+      "breed": "Lab",
+      "employeeId": 1
     },
     {
       "id": 6,
       "name": "Checkers",
-      "breed": "Boxer"
+      "breed": "Boxer",
+      "employeeId": 3
     },
     {
       "name": "Buttons",
