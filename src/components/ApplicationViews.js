@@ -14,6 +14,7 @@ import OwnerForm from "./owner/OwnerForm"
 import Login from "./authentication/Login"
 import AnimalEditForm from "./animal/AnimalEditForm"
 import EmployeeEditForm from "./employee/EmployeeEditForm"
+import OwnerEditForm from "./employee/OwnerEditForm"
 export default class ApplicationViews extends Component {
 
     //check if authenticated
@@ -133,7 +134,15 @@ export default class ApplicationViews extends Component {
                 })
             );
     }
-
+    updateOwner = editedOwner => {
+        return APIManager.put("owners", editedOwner)
+        .then(() => APIManager.all("owners"))
+        .then(owners => {
+            this.setState({
+                owners: owners
+            })
+        })
+    }
     render() {
         return (
             <React.Fragment>
@@ -191,6 +200,9 @@ export default class ApplicationViews extends Component {
                 <Route exact path="/owners/:ownerId(\d+)" render={(props) => {
                     return <OwnerDetail {...props} removeOwner={this.removeOwner} owners={this.state.owners} />
                 }} />
+                <Route path="/owners/:ownerId(\d+)/edit" render={props => {
+                    return <OwnerEditForm {...props} owners={this.state.owners} updateOwner={this.updateOwner} />
+                }}/>
                 <Route path="/owners/new" render={(props) => {
                     return <OwnerForm {...props}
                         addOwner={this.addOwner} />
