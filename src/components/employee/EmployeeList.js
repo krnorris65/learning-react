@@ -20,12 +20,19 @@ class EmployeeList extends Component {
                     {
                         this.props.employees.map(employee =>
                             <div key={employee.id} className="card">
-                            <div className="card-body">
-                                <h5 className="card-title">
-                                <img src={person} className="icon--employee" />{employee.name}</h5>
-                                <Link className="nav-link" to={`/employees/${employee.id}`}>Details</Link>
-                                <a href="#"
-                                    onClick={() => this.props.fireEmployee(employee.id)}>Fire</a>
+                                <div className="card-body">
+                                    <h5 className="card-title">
+                                        <img src={person} className="icon--employee" />{employee.name}</h5>
+                                    <Link className="nav-link" to={`/employees/${employee.id}`}>Details</Link>
+                                    <button
+                                        type="button"
+                                        className="btn btn-success"
+                                        onClick={() => {
+                                            this.props.history.push(`/employees/${employee.id}/edit`);
+                                        }}
+                                    >Edit</button>
+                                    <a href="#"
+                                        onClick={() => this.props.fireEmployee(employee.id)}>Fire</a>
                                 </div>
                                 <h6 className="card-subtitle mb-2 text-muted">Caretaker For</h6>
                                 <div className="animals--caretaker">

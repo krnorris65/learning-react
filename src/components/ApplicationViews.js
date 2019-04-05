@@ -13,6 +13,7 @@ import EmployeeForm from "./employee/EmployeeForm"
 import OwnerForm from "./owner/OwnerForm"
 import Login from "./authentication/Login"
 import AnimalEditForm from "./animal/AnimalEditForm"
+import EmployeeEditForm from "./employee/EmployeeEditForm"
 export default class ApplicationViews extends Component {
 
     //check if authenticated
@@ -80,6 +81,16 @@ export default class ApplicationViews extends Component {
                 })
                 )
             )
+    }
+
+    updateEmployee = editedEmployee => {
+        return APIManager.put("employees", editedEmployee)
+        .then(() => APIManager.all("employees"))
+        .then(employees => {
+            this.setState({
+                employees: employees
+            })
+        })
     }
 
     addEmployee = newEmployee => {
@@ -162,6 +173,9 @@ export default class ApplicationViews extends Component {
                 }} />
                 <Route path="/employees/:employeeId(\d+)" render={(props) => {
                     return <EmployeeDetail {...props} fireEmployee={this.fireEmployee} employees={this.state.employees} />
+                }} />
+                <Route path="/employees/:employeeId(\d+)/edit" render={props => {
+                    return <EmployeeEditForm {...props} locations={this.state.locations} updateEmployee={this.updateEmployee} />
                 }} />
                 <Route path="/employees/new" render={(props) => {
                     return <EmployeeForm {...props}
