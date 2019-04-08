@@ -14,7 +14,7 @@ import OwnerForm from "./owner/OwnerForm"
 import Login from "./authentication/Login"
 import AnimalEditForm from "./animal/AnimalEditForm"
 import EmployeeEditForm from "./employee/EmployeeEditForm"
-import OwnerEditForm from "./employee/OwnerEditForm"
+import OwnerEditForm from "./owner/OwnerEditForm"
 export default class ApplicationViews extends Component {
 
     //check if authenticated

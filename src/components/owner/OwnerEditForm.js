@@ -20,7 +20,7 @@ export default class OwnerEditForm extends Component {
         const editedOwner = {
             id: this.props.match.params.ownerId,
             name: this.state.ownerName,
-            phone: parseInt(this.state.phone)
+            phone: this.state.phone
         }
 
         this.props.updateOwner(editedOwner)
@@ -40,38 +40,35 @@ export default class OwnerEditForm extends Component {
     render() {
         return (
             <React.Fragment>
-                <form className="employeeForm">
+                <form className="ownerForm">
                     <div className="form-group">
-                        <label htmlFor="employeeName">Employee name</label>
+                        <label htmlFor="ownerName">Owner name</label>
                         <input
                             type="text"
                             required
                             className="form-control"
                             onChange={this.handleFieldChange}
-                            id="employeeName"
-                            placeholder="Employee name"
-                            value={this.state.employeeName}
+                            id="ownerName"
+                            placeholder="Owner name"
+                            value={this.state.ownerName}
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="location">Assign to location</label>
-                        <select
-                            name="location"
-                            id="locationId"
+                        <label htmlFor="phone">Owner name</label>
+                        <input
+                            type="phone"
+                            required
+                            className="form-control"
                             onChange={this.handleFieldChange}
-                            value={this.state.locationId}
-                        >
-                        <option value="">Select a location</option>
-                            {this.props.locations.map(l => (
-                                <option key={l.id} id={l.id} value={l.id}>
-                                {l.name}
-                                </option>
-                            ))}
-                        </select>
+                            id="phone"
+                            placeholder="xxx-xxx-xxxx"
+                            value={this.state.phone}
+                        />
                     </div>
+                   
                     <button
                         type="submit"
-                        onClick={this.updateExistingEmployee}
+                        onClick={this.updateExistingOwner}
                         className="btn btn-primary"
                     >Submit
                     </button>
