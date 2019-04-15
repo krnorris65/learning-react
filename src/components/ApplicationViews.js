@@ -15,6 +15,7 @@ import Login from "./authentication/Login"
 import AnimalEditForm from "./animal/AnimalEditForm"
 import EmployeeEditForm from "./employee/EmployeeEditForm"
 import OwnerEditForm from "./owner/OwnerEditForm"
+import SearchResults from "./search/SearchResults"
 export default class ApplicationViews extends Component {
 
     //check if authenticated
@@ -206,6 +207,11 @@ export default class ApplicationViews extends Component {
                 <Route path="/owners/new" render={(props) => {
                     return <OwnerForm {...props}
                         addOwner={this.addOwner} />
+                }} />
+                <Route path="/search" render={(props) => {
+                    if(this.isAuthenticated()){
+                        return <SearchResults {...props}/>
+                    }
                 }} />
             </React.Fragment>
         )

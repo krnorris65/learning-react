@@ -40,5 +40,11 @@ export default Object.create(null, {
                 body: JSON.stringify(editObj)
             }).then(data => data.json())
         }
+    },
+    search: {
+        value: function(resource, searchTerm){
+            return fetch(`${remoteURL}/${resource}?name_like=${searchTerm}`)
+            .then(data => data.json())
+        }
     }
 })

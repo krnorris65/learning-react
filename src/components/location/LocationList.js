@@ -14,7 +14,7 @@ export default class LocationList extends Component {
                             {
                                 this.props.employees
                                 .filter(emp => emp.locationId === location.id)
-                                .map(emp => <li>{emp.name}</li>)
+                                .map(emp => <li key={emp.id}>{emp.name}</li>)
                             }
                             </ul>
                             </div>
