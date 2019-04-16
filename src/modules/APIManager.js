@@ -1,27 +1,30 @@
 const remoteURL = "http://localhost:5002"
 
 export default Object.create(null, {
+    resource: {
+        value: ""
+    },
     get: {
-        value: function (resource, id) {
-            return fetch(`${remoteURL}/${resource}/${id}`).then(e => e.json())
+        value: function (id) {
+            return fetch(`${remoteURL}/${this.resource}/${id}`).then(e => e.json())
 
         }
     },
     all: {
-        value: function (resource) {
-            return fetch(`${remoteURL}/${resource}`).then(e => e.json())
+        value: function () {
+            return fetch(`${remoteURL}/${this.resource}`).then(e => e.json())
         }
     },
     delete: {
-        value: function (resource, id) {
-            return fetch(`${remoteURL}/${resource}/${id}`, {
+        value: function (id) {
+            return fetch(`${remoteURL}/${this.resource}/${id}`, {
                 method: "DELETE"
             }).then(e => e.json())
         }
     },
     post: {
-        value: function (resource, newObj) {
-        return fetch(`${remoteURL}/${resource}`, {
+        value: function (newObj) {
+        return fetch(`${remoteURL}/${this.resource}`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
@@ -31,8 +34,8 @@ export default Object.create(null, {
       }
     },
     put: {
-        value: function(resource, editObj){
-            return fetch (`${remoteURL}/${resource}/${editObj.id}`, {
+        value: function(editObj){
+            return fetch (`${remoteURL}/${this.resource}/${editObj.id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"
@@ -42,8 +45,8 @@ export default Object.create(null, {
         }
     },
     search: {
-        value: function(resource, searchTerm){
-            return fetch(`${remoteURL}/${resource}?name_like=${searchTerm}`)
+        value: function(searchTerm){
+            return fetch(`${remoteURL}/${this.resource}?name_like=${searchTerm}`)
             .then(data => data.json())
         }
     }

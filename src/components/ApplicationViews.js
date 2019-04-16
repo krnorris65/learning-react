@@ -4,18 +4,28 @@ import AnimalList from './animal/AnimalList'
 import LocationList from './location/LocationList'
 import EmployeeList from './employee/EmployeeList'
 import OwnerList from './owner/OwnerList'
-import APIManager from "../modules/APIManager"
+
 import AnimalDetail from "./animal/AnimalDetail"
 import EmployeeDetail from "./employee/EmployeeDetail"
 import OwnerDetail from "./owner/OwnerDetail"
+
 import AnimalForm from "./animal/AnimalForm"
 import EmployeeForm from "./employee/EmployeeForm"
 import OwnerForm from "./owner/OwnerForm"
+
 import Login from "./authentication/Login"
+
 import AnimalEditForm from "./animal/AnimalEditForm"
 import EmployeeEditForm from "./employee/EmployeeEditForm"
 import OwnerEditForm from "./owner/OwnerEditForm"
+
 import SearchResults from "./search/SearchResults"
+
+import OwnerManager from '../modules/OwnerManager';
+import AnimalManager from "../modules/AnimalManager"
+import AnimalOwnerManager from "../modules/AnimalOwnerManager"
+import EmployeeManager from "../modules/EmployeeManager"
+import LocationManager from "../modules/LocationManager"
 export default class ApplicationViews extends Component {
 
     //check if authenticated
@@ -32,22 +42,22 @@ export default class ApplicationViews extends Component {
     componentDidMount() {
         const newState = {}
 
-        APIManager.all("owners")
+        OwnerManager.all()
             .then(owners => newState.owners = owners)
-            .then(() => APIManager.all("employees")
+            .then(() => EmployeeManager.all()
                 .then(employees => newState.employees = employees))
-            .then(() => APIManager.all("locations")
+            .then(() => LocationManager.all()
                 .then(locations => newState.locations = locations))
-            .then(() => APIManager.all("animals")
+            .then(() => AnimalManager.all()
                 .then(allAnimals => newState.animals = allAnimals))
-            .then(() => APIManager.all("animalOwners")
+            .then(() => AnimalOwnerManager.all()
                 .then(animalOwners => newState.animalOwners = animalOwners))
             .then(() => this.setState(newState))
     }
 
     deleteAnimal = id => {
-        return APIManager.delete("animals", id)
-            .then(() => APIManager.all("animals")
+        return AnimalManager.delete(id)
+            .then(() => AnimalManager.all()
                 .then(animals => this.setState({
                     animals: animals
                 })
@@ -56,8 +66,8 @@ export default class ApplicationViews extends Component {
     }
 
     updateAnimal = editedAnimal => {
-        return APIManager.put("animals", editedAnimal)
-        .then(() => APIManager.all("animals"))
+        return AnimalManager.put(editedAnimal)
+        .then(() => AnimalManager.all())
         .then(animals => {
             this.setState({
                 animals: animals
@@ -66,8 +76,8 @@ export default class ApplicationViews extends Component {
     }
 
     addAnimal = newAnimal => {
-        return APIManager.post("animals", newAnimal)
-            .then(() => APIManager.all("animals"))
+        return AnimalManager.post(newAnimal)
+            .then(() => AnimalManager.all())
             .then(animals =>
                 this.setState({
                     animals: animals
@@ -76,8 +86,8 @@ export default class ApplicationViews extends Component {
     }
 
     fireEmployee = id => {
-        return APIManager.delete("employees", id)
-            .then(() => APIManager.all("employees")
+        return EmployeeManager.delete(id)
+            .then(() => EmployeeManager.all()
                 .then(employees => this.setState({
                     employees: employees
                 })
@@ -86,8 +96,8 @@ export default class ApplicationViews extends Component {
     }
 
     updateEmployee = editedEmployee => {
-        return APIManager.put("employees", editedEmployee)
-        .then(() => APIManager.all("employees"))
+        return EmployeeManager.put(editedEmployee)
+        .then(() => EmployeeManager.all())
         .then(employees => {
             this.setState({
                 employees: employees
@@ -96,8 +106,8 @@ export default class ApplicationViews extends Component {
     }
 
     addEmployee = newEmployee => {
-        return APIManager.post("employees", newEmployee)
-            .then(() => APIManager.all("employees"))
+        return EmployeeManager.post(newEmployee)
+            .then(() => EmployeeManager.all())
             .then(employees =>
                 this.setState({
                     employees: employees
@@ -106,14 +116,14 @@ export default class ApplicationViews extends Component {
     }
 
     removeOwner = id => {
-        return APIManager.delete("owners", id)
-            .then(() => APIManager.all("owners")
+        return OwnerManager.delete(id)
+            .then(() => OwnerManager.all()
                 .then(owners => this.setState({
                     owners: owners
                 })
                 )
             )
-            .then(() => APIManager.all("animalOwners")
+            .then(() => AnimalOwnerManager.all()
                 .then(animalOwners => {
                     //gets the current animalOwner relationships
                     let ownerAnimals = this.state.animalOwners.filter(oA => oA.ownerId === id)
@@ -127,8 +137,8 @@ export default class ApplicationViews extends Component {
                 ))
     }
     addOwner = newOwner => {
-        return APIManager.post("owners", newOwner)
-            .then(() => APIManager.all("owners"))
+        return OwnerManager.post(newOwner)
+            .then(() => OwnerManager.all())
             .then(owners =>
                 this.setState({
                     owners: owners
@@ -136,8 +146,8 @@ export default class ApplicationViews extends Component {
             );
     }
     updateOwner = editedOwner => {
-        return APIManager.put("owners", editedOwner)
-        .then(() => APIManager.all("owners"))
+        return OwnerManager.put(editedOwner)
+        .then(() => OwnerManager.all())
         .then(owners => {
             this.setState({
                 owners: owners
