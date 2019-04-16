@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import { Link, withRouter } from "react-router-dom"
 import "bootstrap/dist/css/bootstrap.min.css"
 import APIManager from "../../modules/APIManager"
+import "./NavBar.css"
 
 
 class NavBar extends Component {
