@@ -46,6 +46,7 @@ export default Object.create(null, {
     },
     search: {
         value: function(searchTerm){
+            console.log("searchAPI", this.resource)
             return fetch(`${remoteURL}/${this.resource}?name_like=${searchTerm}`)
             .then(data => data.json())
         }

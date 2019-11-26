@@ -4,7 +4,6 @@ import { Link } from "react-router-dom"
 
 export default class SearchResults extends Component {
     render() {
-
         let animalsFound = false;
         let employeesFound = false;
         let ownersFound = false;

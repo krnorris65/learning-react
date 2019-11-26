@@ -1,8 +1,11 @@
 import React, { Component } from "react"
 import { Link, withRouter } from "react-router-dom"
 import "bootstrap/dist/css/bootstrap.min.css"
-import APIManager from "../../modules/APIManager"
 import "./NavBar.css"
+import OwnerManager from "../../modules/OwnerManager"
+import EmployeeManager from "../../modules/EmployeeManager"
+import LocationManager from "../../modules/LocationManager"
+import AnimalManager from "../../modules/AnimalManager"
 
 
 class NavBar extends Component {
@@ -10,20 +13,25 @@ class NavBar extends Component {
     handleSearch(e) {
         let searchTerm = e.currentTarget.value
         if (e.charCode === 13 && searchTerm !== "") {
+            console.log("handleSearch")
             const searchResults = {}
 
-            APIManager.search("owners", searchTerm)
+            OwnerManager.search(searchTerm)
                 .then(owners => searchResults.owners = owners)
-                .then(() => APIManager.search("employees", searchTerm)
+                .then(() => EmployeeManager.search(searchTerm)
                     .then(employees => searchResults.employees = employees))
-                .then(() => APIManager.search("locations", searchTerm)
+                .then(() => LocationManager.search(searchTerm)
                     .then(locations => searchResults.locations = locations))
-                .then(() => APIManager.search("animals", searchTerm)
+                .then(() => AnimalManager.search(searchTerm)
                     .then(allAnimals => searchResults.animals = allAnimals))
-                .then(() => this.props.history.push({
-                    pathname: "/search",
-                    state: searchResults
-                }))
+                .then(() => {
+                    console.log(searchResults)
+                    return this.props.history.push({
+                        pathname: "/search",
+                        state: searchResults
+                    })
+                }
+                )
 
         }
 
